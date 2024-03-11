@@ -11,7 +11,7 @@ UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class WARRIOR_API UPawnExtensionComponentBase : public UActorComponent
 {
 	GENERATED_BODY()
-
+	
 protected:
 	template <class T>
 	T* GetOwningPawn() const
