@@ -17,7 +17,7 @@ void UWarriorAbilitySystemComponent::OnAbilityInputPressed(const FGameplayTag& I
 		TryActivateAbility(AbilitySpec.Handle);
 	}
 }
-
+ 
 void UWarriorAbilitySystemComponent::OnAbilityInputReleased(const FGameplayTag& InInputTag)
 {
 }
