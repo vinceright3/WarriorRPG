@@ -31,7 +31,7 @@ UHeroCombatComponent* UWarriorHeroGameplayAbility::GetHeroCombatComponentFromAct
 	return GetHeroCharacterFromActorInfo()->GetHeroCombatComponent();
 }
 
-void UWarriorHeroGameplayAbility::GrantHeroWeaponAbilities(const TArray<FWarriorHeroAbilitySet>& InDefaultWeaponAbilities, TArray<FGameplayAbilitySpecHandle>& OutGrantedAbilitiHandles)
+void UWarriorHeroGameplayAbility::GrantHeroWeaponAbilities(const TArray<FWarriorHeroAbilitySet>& InDefaultWeaponAbilities, TArray<FGameplayAbilitySpecHandle>& OutGrantedAbilitySpecHandles)
 {
 	if (InDefaultWeaponAbilities.IsEmpty())
 	{
@@ -46,7 +46,24 @@ void UWarriorHeroGameplayAbility::GrantHeroWeaponAbilities(const TArray<FWarrior
 		AbilitySpec.SourceObject = GetWarriorAbilitySystemComponentFromActorInfo()->GetAvatarActor();
 		AbilitySpec.Level = GetAbilityLevel();
 		AbilitySpec.DynamicAbilityTags.AddTag(AbilitySet.InputTag);
+		
+		FGameplayAbilitySpecHandle SpecHandle = GetWarriorAbilitySystemComponentFromActorInfo()->GiveAbility(AbilitySpec);
 
-		GetWarriorAbilitySystemComponentFromActorInfo()->GiveAbility(AbilitySpec);
+		OutGrantedAbilitySpecHandles.AddUnique(SpecHandle);
+	}
+}
+
+void UWarriorHeroGameplayAbility::ClearGrantedHeroWeaponAbilities(const TArray<FGameplayAbilitySpecHandle>& InSpecHandlesToClear)
+{
+	if (InSpecHandlesToClear.IsEmpty())
+	{
+		return;
+	}
+
+	for (const FGameplayAbilitySpecHandle& SpecHandle : InSpecHandlesToClear)
+	{
+		if(!SpecHandle.IsValid()) continue;
+
+		GetWarriorAbilitySystemComponentFromActorInfo()->ClearAbility(SpecHandle);
 	}
 }

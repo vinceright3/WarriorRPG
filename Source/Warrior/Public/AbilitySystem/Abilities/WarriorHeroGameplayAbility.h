@@ -28,7 +28,10 @@ public:
 	UHeroCombatComponent* GetHeroCombatComponentFromActorInfo();
 
 	UFUNCTION(BlueprintCallable,Category = "Warrior|Ability")
-	void GrantHeroWeaponAbilities(const TArray<FWarriorHeroAbilitySet>& InDefaultWeaponAbilities,TArray<FGameplayAbilitySpecHandle>& OutGrantedAbilitiHandles);
+	void GrantHeroWeaponAbilities(const TArray<FWarriorHeroAbilitySet>& InDefaultWeaponAbilities,TArray<FGameplayAbilitySpecHandle>& OutGrantedAbilitySpecHandles);
+
+	UFUNCTION(BlueprintCallable,Category = "Warrior|Ability")
+	void ClearGrantedHeroWeaponAbilities(const TArray<FGameplayAbilitySpecHandle>& InSpecHandlesToClear);
 
 private:
 	TWeakObjectPtr<AWarriorHeroCharacter> CachedWarriorHeroCharacter;
