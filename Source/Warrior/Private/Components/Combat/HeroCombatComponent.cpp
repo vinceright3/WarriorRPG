@@ -29,7 +29,7 @@ void UHeroCombatComponent::OnHitTargetActor(AActor* HitActor)
 	{
 		return;
 	}
-
+	 
 	OverlappedActors.AddUnique(HitActor);
 
 	FGameplayEventData Data;
