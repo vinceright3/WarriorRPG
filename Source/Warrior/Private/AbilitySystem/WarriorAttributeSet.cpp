@@ -26,7 +26,7 @@ void UWarriorAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCal
 
 		SetCurrentHealth(NewCurrentHealth);
 	}
-
+	
 	if (Data.EvaluatedData.Attribute == GetCurrentRageAttribute())
 	{
 		const float NewCurrentRage = FMath::Clamp(GetCurrentRage(),0.f,GetMaxRage());
