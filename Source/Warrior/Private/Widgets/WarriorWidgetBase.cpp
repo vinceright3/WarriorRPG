@@ -23,7 +23,7 @@ void UWarriorWidgetBase::InitEnemyCreatedWidget(AActor* OwningEnemyActor)
 	{
 		UEnemyUIComponent* EnemyUIComponent = PawnUIInterface->GetEnemyUIComponent();
 
-		checkf(EnemyUIComponent,TEXT("Failed to extrac an EnemyUIComponent from %s"),*OwningEnemyActor->GetActorNameOrLabel());
+		checkf(EnemyUIComponent,TEXT("Failed to extract an EnemyUIComponent from %s"),*OwningEnemyActor->GetActorNameOrLabel());
 
 		BP_OnOwningEnemyUIComponentInitialized(EnemyUIComponent);
 	}
