@@ -16,7 +16,7 @@ void UWarriorWidgetBase::NativeOnInitialized()
 		}
 	}
 }
- 
+
 void UWarriorWidgetBase::InitEnemyCreatedWidget(AActor* OwningEnemyActor)
 {
 	if (IPawnUIInterface* PawnUIInterface = Cast<IPawnUIInterface>(OwningEnemyActor))
