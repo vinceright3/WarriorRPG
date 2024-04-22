@@ -28,8 +28,28 @@ AWarriorAIController::AWarriorAIController(const FObjectInitializer& ObjectIniti
 	EnemyPerceptionComponent->ConfigureSense(*AISenseConfig_Sight);
 	EnemyPerceptionComponent->SetDominantSense(UAISenseConfig_Sight::StaticClass());
 	EnemyPerceptionComponent->OnTargetPerceptionUpdated.AddUniqueDynamic(this,&ThisClass::OnEnemyPerceptionUpdated);
+
+	SetGenericTeamId(FGenericTeamId(1));
+}
+
+ETeamAttitude::Type AWarriorAIController::GetTeamAttitudeTowards(const AActor& Other) const
+{
+	const APawn* PawnToCheck = Cast<const APawn>(&Other);
+
+	const IGenericTeamAgentInterface* OtherTeamAgent = Cast<IGenericTeamAgentInterface>(PawnToCheck->GetController());
+
+	if (OtherTeamAgent && OtherTeamAgent->GetGenericTeamId() != GetGenericTeamId())
+	{
+		return ETeamAttitude::Hostile;
+	}
+
+	return ETeamAttitude::Friendly;
 }
 
 void AWarriorAIController::OnEnemyPerceptionUpdated(AActor* Actor, FAIStimulus Stimulus)
 {
+	if (Stimulus.WasSuccessfullySensed() && Actor)
+	{
+		Debug::Print(Actor->GetActorNameOrLabel() + TEXT(" was sensed"),FColor::Green);
+	}
 }
