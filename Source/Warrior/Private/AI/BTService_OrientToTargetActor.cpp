@@ -42,7 +42,7 @@ void UBTService_OrientToTargetActor::TickNode(UBehaviorTreeComponent& OwnerComp,
 
 	UObject* ActorObject = OwnerComp.GetBlackboardComponent()->GetValueAsObject(InTargetActorKey.SelectedKeyName);
 	AActor* TargetActor = Cast<AActor>(ActorObject);
-
+	 
 	APawn* OwningPawn = OwnerComp.GetAIOwner()->GetPawn();
 
 	if (OwningPawn && TargetActor)
