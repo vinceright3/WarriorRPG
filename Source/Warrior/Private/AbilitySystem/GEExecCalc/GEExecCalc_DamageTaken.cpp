@@ -89,7 +89,7 @@ void UGEExecCalc_DamageTaken::Execute_Implementation(const FGameplayEffectCustom
 		/*	Debug::Print(TEXT("UsedHeavyAttackComboCount"),UsedHeavyAttackComboCount);*/
 		}
 	}
-
+	
 	float TargetDefensePower = 0.f;
 	ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(GetWarriorDamageCapture().DefensePowerDef,EvaluateParameters,TargetDefensePower);
 	/*Debug::Print(TEXT("TargetDefensePower"),TargetDefensePower);*/
