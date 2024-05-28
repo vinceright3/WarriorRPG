@@ -13,7 +13,8 @@ namespace WarriorGameplayTags
 	UE_DEFINE_GAMEPLAY_TAG(InputTag_LightAttack_Axe,"InputTag.LightAttack.Axe");
 	UE_DEFINE_GAMEPLAY_TAG(InputTag_HeavyAttack_Axe,"InputTag.HeavyAttack.Axe");
 	UE_DEFINE_GAMEPLAY_TAG(InputTag_Roll,"InputTag.Roll");
-	
+	UE_DEFINE_GAMEPLAY_TAG(InputTag_SwitchTarget,"InputTag.SwitchTarget");
+
 	UE_DEFINE_GAMEPLAY_TAG(InputTag_MustBeHeld,"InputTag.MustBeHeld");
 	UE_DEFINE_GAMEPLAY_TAG(InputTag_MustBeHeld_Block,"InputTag.MustBeHeld.Block");
 
