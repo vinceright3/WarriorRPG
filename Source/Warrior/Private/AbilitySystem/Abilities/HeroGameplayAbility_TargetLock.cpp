@@ -53,7 +53,7 @@ void UHeroGameplayAbility_TargetLock::OnTargetLockTick(float DeltaTime)
 	!UWarriorFunctionLibrary::NativeDoesActorHaveTag(GetHeroCharacterFromActorInfo(),WarriorGameplayTags::Player_Status_Rolling)
 	&&
 	!UWarriorFunctionLibrary::NativeDoesActorHaveTag(GetHeroCharacterFromActorInfo(),WarriorGameplayTags::Player_Status_Blocking);
-
+	
 	if (bShouldOverrideRotation)
 	{
 		FRotator LookAtRot = UKismetMathLibrary::FindLookAtRotation(
