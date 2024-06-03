@@ -6,6 +6,8 @@
 #include "NiagaraComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 
+#include "WarriorDebugHelper.h"
+
 AWarriorProjectileBase::AWarriorProjectileBase()
 {
 	PrimaryActorTick.bCanEverTick = false;
@@ -16,6 +18,8 @@ AWarriorProjectileBase::AWarriorProjectileBase()
 	ProjectileCollisionBox->SetCollisionResponseToChannel(ECC_Pawn,ECR_Block);
 	ProjectileCollisionBox->SetCollisionResponseToChannel(ECC_WorldDynamic,ECR_Block);
 	ProjectileCollisionBox->SetCollisionResponseToChannel(ECC_WorldStatic,ECR_Block);
+	ProjectileCollisionBox->OnComponentHit.AddUniqueDynamic(this,&ThisClass::OnProjectileHit);
+	ProjectileCollisionBox->OnComponentBeginOverlap.AddUniqueDynamic(this,&ThisClass::OnProjectileBeginOverlap);
 
 	ProjectileNiagaraComponent = CreateDefaultSubobject<UNiagaraComponent>(TEXT("ProjectileNiagaraComponent"));
 	ProjectileNiagaraComponent->SetupAttachment(GetRootComponent());
@@ -32,6 +36,25 @@ AWarriorProjectileBase::AWarriorProjectileBase()
 void AWarriorProjectileBase::BeginPlay()
 {
 	Super::BeginPlay();
+
+	if (ProjectileDamagePolicy == EProjectileDamagePolicy::OnBeginOverlap)
+	{
+		ProjectileCollisionBox->SetCollisionResponseToChannel(ECC_Pawn,ECR_Overlap);
+	}
 	
+}
+
+void AWarriorProjectileBase::OnProjectileHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
+{
+	if (OtherActor)
+	{
+		Debug::Print(OtherActor->GetActorNameOrLabel());
+		
+		Destroy();
+	}
+}
+
+void AWarriorProjectileBase::OnProjectileBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
 }
 
