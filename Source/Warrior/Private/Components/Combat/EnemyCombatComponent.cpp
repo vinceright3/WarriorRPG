@@ -17,7 +17,6 @@ void UEnemyCombatComponent::OnHitTargetActor(AActor* HitActor)
 
 	OverlappedActors.AddUnique(HitActor);
 
-	//TODO:: Implement block check
 	bool bIsValidBlock = false;
 
 	const bool bIsPlayerBlocking = UWarriorFunctionLibrary::NativeDoesActorHaveTag(HitActor,WarriorGameplayTags::Player_Status_Blocking);
