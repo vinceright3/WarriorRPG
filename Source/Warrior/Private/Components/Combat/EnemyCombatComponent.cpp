@@ -48,3 +48,5 @@ void UEnemyCombatComponent::OnHitTargetActor(AActor* HitActor)
 		);
 	}
 }
+
+
