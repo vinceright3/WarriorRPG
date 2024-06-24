@@ -14,6 +14,8 @@ namespace WarriorGameplayTags
 	UE_DEFINE_GAMEPLAY_TAG(InputTag_HeavyAttack_Axe,"InputTag.HeavyAttack.Axe");
 	UE_DEFINE_GAMEPLAY_TAG(InputTag_Roll,"InputTag.Roll");
 	UE_DEFINE_GAMEPLAY_TAG(InputTag_SwitchTarget,"InputTag.SwitchTarget");
+	UE_DEFINE_GAMEPLAY_TAG(InputTag_SpecialWeaponAbility_Light,"InputTag.SpecialWeaponAbility.Light");
+	UE_DEFINE_GAMEPLAY_TAG(InputTag_SpecialWeaponAbility_Heavy,"InputTag.SpecialWeaponAbility.Heavy");
 
 	UE_DEFINE_GAMEPLAY_TAG(InputTag_MustBeHeld,"InputTag.MustBeHeld");
 	UE_DEFINE_GAMEPLAY_TAG(InputTag_MustBeHeld_Block,"InputTag.MustBeHeld.Block");
@@ -32,6 +34,8 @@ namespace WarriorGameplayTags
 	UE_DEFINE_GAMEPLAY_TAG(Player_Ability_Block,"Player.Ability.Block");
 	UE_DEFINE_GAMEPLAY_TAG(Player_Ability_TargetLock,"Player.Ability.TargetLock");
 	UE_DEFINE_GAMEPLAY_TAG(Player_Ability_Rage,"Player.Ability.Rage");
+	UE_DEFINE_GAMEPLAY_TAG(Player_Ability_SpecialWeaponAbility_Light,"Player.Ability.SpecialWeaponAbility.Light");
+	UE_DEFINE_GAMEPLAY_TAG(Player_Ability_SpecialWeaponAbility_Heavy,"Player.Ability.SpecialWeaponAbility.Heavy");
 
 	UE_DEFINE_GAMEPLAY_TAG(Player_Weapon_Axe,"Player.Weapon.Axe");
 
