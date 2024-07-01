@@ -87,7 +87,7 @@ void UWarriorGameplayAbility::ApplyGameplayEffectSpecHandleToHitResults(const FG
 					FGameplayEventData Data;
 					Data.Instigator = OwningPawn;
 					Data.Target = HitPawn;
-					    
+					
 					UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(
 						HitPawn,
 						WarriorGameplayTags::Shared_Event_HitReact,
