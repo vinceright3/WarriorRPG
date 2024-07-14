@@ -10,14 +10,14 @@ void AWarriorSurvialGameMode::BeginPlay()
 	checkf(EnemyWaveSpawnerDataTable,TEXT("Forgot to assign a valid datat table in survial game mode blueprint"));
 
 	SetCurrentSurvialGameModeState(EWarriorSurvialGameModeState::WaitSpawnNewWave);
-
+	
 	TotalWavesToSpawn = EnemyWaveSpawnerDataTable->GetRowNames().Num();
 }
 
 void AWarriorSurvialGameMode::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
+	
 	if (CurrentSurvialGameModeState == EWarriorSurvialGameModeState::WaitSpawnNewWave)
 	{
 		TimePassedSinceStart += DeltaTime;
