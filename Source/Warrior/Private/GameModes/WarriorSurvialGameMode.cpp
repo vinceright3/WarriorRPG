@@ -2,6 +2,10 @@
 
 
 #include "GameModes/WarriorSurvialGameMode.h"
+#include "Engine/AssetManager.h"
+#include "Characters/WarriorEnemyCharacter.h"
+
+#include "WarriorDebugHelper.h"
 
 void AWarriorSurvialGameMode::BeginPlay()
 {
@@ -12,6 +16,8 @@ void AWarriorSurvialGameMode::BeginPlay()
 	SetCurrentSurvialGameModeState(EWarriorSurvialGameModeState::WaitSpawnNewWave);
 	
 	TotalWavesToSpawn = EnemyWaveSpawnerDataTable->GetRowNames().Num();
+
+	PreLoadNextWaveEnemies();
 }
 
 void AWarriorSurvialGameMode::Tick(float DeltaTime)
@@ -61,6 +67,7 @@ void AWarriorSurvialGameMode::Tick(float DeltaTime)
 			else
 			{
 				SetCurrentSurvialGameModeState(EWarriorSurvialGameModeState::WaitSpawnNewWave);
+				PreLoadNextWaveEnemies();
 			}
 		}
 	}
@@ -76,4 +83,43 @@ void AWarriorSurvialGameMode::SetCurrentSurvialGameModeState(EWarriorSurvialGame
 bool AWarriorSurvialGameMode::HasFinishedAllWaves() const
 {
 	return CurrentWaveCount>TotalWavesToSpawn;
+}
+
+void AWarriorSurvialGameMode::PreLoadNextWaveEnemies()
+{
+	if (HasFinishedAllWaves())
+	{
+		return;
+	}
+
+	for (const FWarriorEnemyWaveSpawnerInfo& SpawnerInfo : GetCurrentWaveSpawnerTableRow()->EnemyWaveSpawnerDefinitions)
+	{
+		if(SpawnerInfo.SoftEnemyClassToSpawn.IsNull()) continue;
+
+		UAssetManager::GetStreamableManager().RequestAsyncLoad(
+			SpawnerInfo.SoftEnemyClassToSpawn.ToSoftObjectPath(),
+			FStreamableDelegate::CreateLambda(
+				[SpawnerInfo,this]()
+				{
+					if (UClass* LoadedEnemyClass = SpawnerInfo.SoftEnemyClassToSpawn.Get())
+					{
+						PreLoadedEnemyClassMap.Emplace(SpawnerInfo.SoftEnemyClassToSpawn,LoadedEnemyClass);
+
+						Debug::Print(LoadedEnemyClass->GetName() + TEXT(" is loaded"));
+					}
+				}
+			)
+		);
+	}
+}
+
+FWarriorEnemyWaveSpawnerTableRow* AWarriorSurvialGameMode::GetCurrentWaveSpawnerTableRow() const
+{
+	const FName RowName = FName(TEXT("Wave") + FString::FromInt(CurrentWaveCount));
+
+	FWarriorEnemyWaveSpawnerTableRow* FoundRow = EnemyWaveSpawnerDataTable->FindRow<FWarriorEnemyWaveSpawnerTableRow>(RowName,FString());
+	
+	checkf(FoundRow,TEXT("Could not find a valid row under the name %s in the data table"),*RowName.ToString());
+
+	return FoundRow;
 }
