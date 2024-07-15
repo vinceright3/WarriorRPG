@@ -183,12 +183,14 @@ int32 AWarriorSurvialGameMode::TrySpawnWaveEnemies()
 
 bool AWarriorSurvialGameMode::ShouldKeepSpawnEnemies() const
 {
-	return TotalSpawnedEnemiesThisWaveCounter >= GetCurrentWaveSpawnerTableRow()->TotalEnemyToSpawnThisWave;
+	return TotalSpawnedEnemiesThisWaveCounter < GetCurrentWaveSpawnerTableRow()->TotalEnemyToSpawnThisWave;
 }
 
 void AWarriorSurvialGameMode::OnEnemyDestyoed(AActor* DestroyedActor)
 {
 	CurrentSpawnedEnemiesCounter--;
+
+	Debug::Print(FString::Printf(TEXT("CurrentSpawnedEnemiesCounter:%i, TotalSpawnedEnemiesThisWaveCounter:%i"),CurrentSpawnedEnemiesCounter,TotalSpawnedEnemiesThisWaveCounter));
 
 	if (ShouldKeepSpawnEnemies())
 	{
