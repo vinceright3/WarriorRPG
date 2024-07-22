@@ -78,18 +78,22 @@ void AWarriorHeroCharacter::PossessedBy(AController* NewController)
 				{
 				case EWarriorGameDifficulty::Easy:
 					AbilityApplyLevel = 4;
+					Debug::Print(TEXT("Current Difficulty: Easy"));
 					break;
 
 				case EWarriorGameDifficulty::Normal:
 					AbilityApplyLevel = 3;
+					Debug::Print(TEXT("Current Difficulty: Normal"));
 					break;
 
 				case EWarriorGameDifficulty::Hard:
 					AbilityApplyLevel = 2;
+					Debug::Print(TEXT("Current Difficulty: Hard"));
 					break;
 
 				case EWarriorGameDifficulty::VeryHard:
 					AbilityApplyLevel = 1;
+					Debug::Print(TEXT("Current Difficulty: Very Hard"));
 					break;
 
 				default:
