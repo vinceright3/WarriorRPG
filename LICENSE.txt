@@ -1,0 +1,20 @@
+
+All licenses in this repository are copyrighted by Vince Petrelli.
+
+All code should only be used for informational purposes
+
+------------------------------------------------------------------------------
+
+Informational Purposes Only
+
+Vince Petrelli is the author of the work and reserves all rights to the work worldwide under
+copyright law, including all related and neighboring rights,
+to the extent allowed by law.
+
+The code under this repo can only be used for informational purposes and not for commercial use of any kind.
+
+Other Information:
+
+    * Whoever wants to use the code for commercial purposes must contact the author Vince Petrelli for permission to use
+
+
